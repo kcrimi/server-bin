@@ -1,0 +1,16 @@
+#!/bin/bash
+
+array_contains () {
+	local array="$1[@]"
+	local query=$2
+	local present=0
+	for element in "${!array}"; do
+		if [[ "$element" == "$query" ]]; then
+			present=1
+			break
+		fi
+	done
+	echo $present
+	return $present
+}
+

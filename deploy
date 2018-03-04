@@ -1,0 +1,21 @@
+#!/bin/bash
+source ~/bin/utils
+sites=("music" "tech" "food" "band" "wedding" "proposal")
+
+if [ -z "$1" ]; then
+	echo "No argument received by server deploy script"
+
+elif [ $(array_contains sites $1) == "1" ]; then
+	if [ "${sites[3]}" == "$1" ]; then
+		cd /var/www/band_site
+	elif [ "${sites[4]}" == "$1" ]; then
+		cd /var/www/choicolateicecrimi.com
+	else
+		cd /var/www/kevincrimi.com/"$1"_site
+	fi
+	git pull
+	jekyll build
+else
+	echo "$1_site not found"
+fi
+
